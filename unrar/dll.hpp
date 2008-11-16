@@ -28,14 +28,12 @@
 
 #define RAR_DLL_VERSION       4
 
-#ifdef _UNIX
 #define CALLBACK
 #define PASCAL
 #define LONG long
 #define HANDLE void *
 #define LPARAM long
 #define UINT unsigned int
-#endif
 
 struct RARHeaderData
 {

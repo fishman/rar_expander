@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		273E41D50ED0798900C0B253 /* RarExpander.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = 273E41D40ED0798900C0B253 /* RarExpander.scriptSuite */; };
+		273E41DD0ED07B8F00C0B253 /* dll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 273E41DC0ED07B8F00C0B253 /* dll.cpp */; };
 		2760A9AA0ED05DCC0017905F /* expander_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2760A9A90ED05DCC0017905F /* expander_icon.icns */; };
 		2760A9B00ED061F90017905F /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2760A9AE0ED061F90017905F /* MainMenu.nib */; };
-		2760A9B50ED062310017905F /* RarExpander.m in Sources */ = {isa = PBXBuildFile; fileRef = 2760A9B40ED062310017905F /* RarExpander.m */; };
+		2760A9B50ED062310017905F /* RarExpander.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2760A9B40ED062310017905F /* RarExpander.mm */; };
 		2760A9B80ED062400017905F /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2760A9B70ED062400017905F /* PreferencesController.m */; };
 		2760AA720ED071EA0017905F /* strlist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2760AA710ED071EA0017905F /* strlist.cpp */; };
 		2760AA740ED071F10017905F /* strfn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2760AA730ED071F10017905F /* strfn.cpp */; };
@@ -62,10 +64,12 @@
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		273E41D40ED0798900C0B253 /* RarExpander.scriptSuite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = RarExpander.scriptSuite; path = Resources/RarExpander.scriptSuite; sourceTree = "<group>"; };
+		273E41DC0ED07B8F00C0B253 /* dll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dll.cpp; sourceTree = "<group>"; };
 		2760A9A90ED05DCC0017905F /* expander_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = expander_icon.icns; path = Resources/expander_icon.icns; sourceTree = "<group>"; };
 		2760A9AF0ED061F90017905F /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		2760A9B30ED062310017905F /* RarExpander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RarExpander.h; sourceTree = "<group>"; };
-		2760A9B40ED062310017905F /* RarExpander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RarExpander.m; sourceTree = "<group>"; };
+		2760A9B40ED062310017905F /* RarExpander.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RarExpander.mm; sourceTree = "<group>"; };
 		2760A9B60ED062400017905F /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
 		2760A9B70ED062400017905F /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		2760AA710ED071EA0017905F /* strlist.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = strlist.cpp; sourceTree = "<group>"; };
@@ -134,7 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				2760A9B30ED062310017905F /* RarExpander.h */,
-				2760A9B40ED062310017905F /* RarExpander.m */,
+				2760A9B40ED062310017905F /* RarExpander.mm */,
 				2760A9B60ED062400017905F /* PreferencesController.h */,
 				2760A9B70ED062400017905F /* PreferencesController.m */,
 			);
@@ -170,6 +174,7 @@
 		2760A9F40ED06F990017905F /* unrar */ = {
 			isa = PBXGroup;
 			children = (
+				273E41DC0ED07B8F00C0B253 /* dll.cpp */,
 				2760AACC0ED073340017905F /* smallfn.cpp */,
 				2760AAC90ED073230017905F /* consio.cpp */,
 				2760AA800ED072E70017905F /* file.cpp */,
@@ -242,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				2760A9A90ED05DCC0017905F /* expander_icon.icns */,
+				273E41D40ED0798900C0B253 /* RarExpander.scriptSuite */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				2760A9AE0ED061F90017905F /* MainMenu.nib */,
@@ -304,6 +310,7 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				2760A9AA0ED05DCC0017905F /* expander_icon.icns in Resources */,
 				2760A9B00ED061F90017905F /* MainMenu.nib in Resources */,
+				273E41D50ED0798900C0B253 /* RarExpander.scriptSuite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				2760A9B50ED062310017905F /* RarExpander.m in Sources */,
+				2760A9B50ED062310017905F /* RarExpander.mm in Sources */,
 				2760A9B80ED062400017905F /* PreferencesController.m in Sources */,
 				2760AA720ED071EA0017905F /* strlist.cpp in Sources */,
 				2760AA740ED071F10017905F /* strfn.cpp in Sources */,
@@ -359,6 +366,7 @@
 				2760AAC70ED072FA0017905F /* unpack.cpp in Sources */,
 				2760AACA0ED073230017905F /* consio.cpp in Sources */,
 				2760AACD0ED073340017905F /* smallfn.cpp in Sources */,
+				273E41DD0ED07B8F00C0B253 /* dll.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,7 +431,9 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = unrar;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DRARDLL";
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};
@@ -436,6 +446,8 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = unrar;
+				OTHER_CFLAGS = "-DRARDLL";
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};

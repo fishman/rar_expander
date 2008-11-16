@@ -1,2 +1,6 @@
 *.pbxuser
 *.perspectivev3
+.DS_Store
+*.swp
+*~.nib
+build

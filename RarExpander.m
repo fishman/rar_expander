@@ -11,4 +11,14 @@
 
 @implementation RarExpander
 
+- (void)donate:(id)sender
+{
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.paypal.com"]];
+}
+
+- (void)open:(id)sender
+{
+  
+}
+
 @end

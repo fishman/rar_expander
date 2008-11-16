@@ -12,6 +12,8 @@
 @interface PreferencesController : NSObject {
 	IBOutlet NSButton *beepButton;
 	IBOutlet NSButton *destinationAskButton;
+	IBOutlet NSButton *destinationFixedButton;
+	IBOutlet NSButton *destinationSameButton;
 }
 
 @end

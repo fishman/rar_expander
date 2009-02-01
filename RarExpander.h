@@ -11,6 +11,7 @@
 
 @interface RarExpander : NSObject {
 	IBOutlet NSSecureTextField *aSecureTextField;
+  IBOutlet NSWindow *passWindow;
 }
 
 - (IBAction)about:(id)sender;

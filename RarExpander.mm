@@ -8,7 +8,6 @@
 
 #import "RarExpander.h"
 
-#define HANDLE void*;
 #import "dll.hpp"
 
 int volumeChange(char * nextArchiveName, int mode) {
@@ -59,12 +58,29 @@ int processData(unsigned char * block, int size) {
 
   fprintf(stderr, "Filename = %s\n", header.FileName);
 
-  result = RARProcessFile(archive, RAR_EXTRACT, "/Users/timebomb/Desktop/sample", NULL);
+  result = RARProcessFile(archive, RAR_EXTRACT|RAR_SKIP, "/Users/timebomb/Desktop/sample", NULL);
 
   fprintf(stderr, "\nresult = %i\n", result);
 
   RARCloseArchive(archive);
 
+  [passWindow orderFront:sender];
 }
+
+- (void)cancelPassword:(id)sender
+{
+
+}
+
+- (void)acceptPassword:(id)sender
+{
+
+}
+
+- (void)about:(id)sender
+{
+
+}
+
 
 @end

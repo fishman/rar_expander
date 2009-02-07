@@ -34,16 +34,22 @@ int processData(unsigned char * block, int size) {
 }
 
 int processRarCallbackMessage(UINT msg, LONG UserData, LONG P1, LONG P2) {
-  fprintf(stderr, "hello world");
 	switch (msg) {
 		// case UCM_CHANGEVOLUME : return volumeSwitch(current_env, current_obj, (char *) P1, (int) P2);
 		// case UCM_PROCESSDATA :	return processData(current_env, current_obj, (unsigned char *) P1, (int) P2);
 		// case UCM_NEEDPASSWORD :	return needPassword(current_env, current_obj, (char *) P1, (int) P2);
-    case UCM_CHANGEVOLUME : fprintf(stderr, "Change volume"); return STOP_PROCESSING;
-    case UCM_PROCESSDATA :	fprintf(stderr, "process data"); return STOP_PROCESSING;
-    case UCM_NEEDPASSWORD :	fprintf(stderr, "need password"); return STOP_PROCESSING;
-		default :				fprintf(stderr, "Unknown message passed to RAR callback function.");
-								return STOP_PROCESSING;
+    case UCM_CHANGEVOLUME :
+      fprintf(stderr, "Change volume");
+      return STOP_PROCESSING;
+    case UCM_PROCESSDATA :
+      fprintf(stderr, "process data");
+      return STOP_PROCESSING;
+    case UCM_NEEDPASSWORD :
+      fprintf(stderr, "need password");
+      return STOP_PROCESSING;
+		default :
+		  fprintf(stderr, "Unknown message passed to RAR callback function.");
+		  return STOP_PROCESSING;
 	}
 }
 
@@ -52,7 +58,6 @@ bool extractAllFiles(HANDLE archive, char * destinationPath) {
 	int result;
 
 	fileHeader.CmtBuf = NULL;
-	fprintf(stderr, "hello world");
 
 	while((result = RARReadHeader(archive, &fileHeader)) == SUCCESS) {
 		fprintf(stderr, "Extracing file %s\n", fileHeader.FileName);
@@ -79,7 +84,7 @@ bool extractAllFiles(HANDLE archive, char * destinationPath) {
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.paypal.com"]];
 }
 
-- (void)open:(id)sender
+- (void)extractArchive:(NSString*)fileName
 {
   struct RAROpenArchiveData testArchive;
   struct RARHeaderData header;
@@ -87,7 +92,7 @@ bool extractAllFiles(HANDLE archive, char * destinationPath) {
   int result;
 
   testArchive.OpenMode    = RAR_OM_EXTRACT;
-  testArchive.ArcName     = "/Users/timebomb/Downloads/Archives/chang3ling.part01.rar";
+  testArchive.ArcName     = (char*)[fileName cString];
   testArchive.CmtBuf      = NULL;
   testArchive.CmtBufSize  = 0;
 
@@ -95,23 +100,13 @@ bool extractAllFiles(HANDLE archive, char * destinationPath) {
 
   archive = RAROpenArchive(&testArchive);
 
-  fprintf(stderr, "OpenResult = %i\n", testArchive.OpenResult);
-
 	RARSetCallback(archive, processRarCallbackMessage, (LONG) NULL);
-  RARSetChangeVolProc(archive, volumeChange);
-  RARSetProcessDataProc(archive, processData);
-
-  RARReadHeader(archive, &header);
-
-  fprintf(stderr, "Filename = %s\n", header.FileName);
+  // RARSetChangeVolProc(archive, volumeChange);
+  // RARSetProcessDataProc(archive, processData);
 
   result = extractAllFiles(archive, "/Users/timebomb/Desktop/sample");
 
-  fprintf(stderr, "\nresult = %i\n", result);
-
   RARCloseArchive(archive);
-
-  [passWindow orderFront:sender];
 }
 
 - (void)openPanelDidEnd:(NSOpenPanel *)openPanel
@@ -121,6 +116,8 @@ bool extractAllFiles(HANDLE archive, char * destinationPath) {
   if (returnCode == NSOKButton) {
     NSString *path = [openPanel filename];
     DLog(@"%@", path);
+
+    [self extractArchive:path];
   }
 }
 

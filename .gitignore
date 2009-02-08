@@ -4,3 +4,4 @@
 *.swp
 *~.nib
 build
+.tmtags

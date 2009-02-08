@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2736F1CA0F3F6B3200FB1364 /* rar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2736F1C90F3F6B3200FB1364 /* rar.cpp */; };
+		2736F1CF0F3F6B9B00FB1364 /* list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2760AA9A0ED072E70017905F /* list.cpp */; };
 		273E41D50ED0798900C0B253 /* RarExpander.scriptSuite in Resources */ = {isa = PBXBuildFile; fileRef = 273E41D40ED0798900C0B253 /* RarExpander.scriptSuite */; };
 		273E41DD0ED07B8F00C0B253 /* dll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 273E41DC0ED07B8F00C0B253 /* dll.cpp */; };
 		2760A9AA0ED05DCC0017905F /* expander_icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2760A9A90ED05DCC0017905F /* expander_icon.icns */; };
@@ -45,7 +47,6 @@
 		2760AABA0ED072E70017905F /* extinfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2760AA970ED072E70017905F /* extinfo.cpp */; };
 		2760AABB0ED072E70017905F /* extract.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2760AA980ED072E70017905F /* extract.cpp */; };
 		2760AABC0ED072E70017905F /* volume.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2760AA990ED072E70017905F /* volume.cpp */; };
-		2760AABD0ED072E70017905F /* list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2760AA9A0ED072E70017905F /* list.cpp */; };
 		2760AABE0ED072E70017905F /* find.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2760AA9B0ED072E70017905F /* find.cpp */; };
 		2760AABF0ED072E70017905F /* cmddata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2760AA9D0ED072E70017905F /* cmddata.cpp */; };
 		2760AAC10ED072E70017905F /* filestr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2760AA9F0ED072E70017905F /* filestr.cpp */; };
@@ -54,7 +55,6 @@
 		2760AAC40ED072E70017905F /* scantree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2760AAA20ED072E70017905F /* scantree.cpp */; };
 		2760AAC70ED072FA0017905F /* unpack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2760AAC60ED072FA0017905F /* unpack.cpp */; };
 		2760AACA0ED073230017905F /* consio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2760AAC90ED073230017905F /* consio.cpp */; };
-		2760AACD0ED073340017905F /* smallfn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2760AACC0ED073340017905F /* smallfn.cpp */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -65,6 +65,8 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		2736F0E20F3E507400FB1364 /* AlertSheets.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlertSheets.mm; sourceTree = "<group>"; };
+		2736F1C90F3F6B3200FB1364 /* rar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rar.cpp; sourceTree = "<group>"; };
+		2736F1CB0F3F6B4300FB1364 /* rarvmtbl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rarvmtbl.cpp; sourceTree = "<group>"; };
 		273E41D40ED0798900C0B253 /* RarExpander.scriptSuite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = RarExpander.scriptSuite; path = Resources/RarExpander.scriptSuite; sourceTree = "<group>"; };
 		273E41DC0ED07B8F00C0B253 /* dll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dll.cpp; sourceTree = "<group>"; };
 		2760A9A90ED05DCC0017905F /* expander_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = expander_icon.icns; path = Resources/expander_icon.icns; sourceTree = "<group>"; };
@@ -176,6 +178,8 @@
 		2760A9F40ED06F990017905F /* unrar */ = {
 			isa = PBXGroup;
 			children = (
+				2736F1CB0F3F6B4300FB1364 /* rarvmtbl.cpp */,
+				2736F1C90F3F6B3200FB1364 /* rar.cpp */,
 				273E41DC0ED07B8F00C0B253 /* dll.cpp */,
 				2760AACC0ED073340017905F /* smallfn.cpp */,
 				2760AAC90ED073230017905F /* consio.cpp */,
@@ -358,7 +362,6 @@
 				2760AABA0ED072E70017905F /* extinfo.cpp in Sources */,
 				2760AABB0ED072E70017905F /* extract.cpp in Sources */,
 				2760AABC0ED072E70017905F /* volume.cpp in Sources */,
-				2760AABD0ED072E70017905F /* list.cpp in Sources */,
 				2760AABE0ED072E70017905F /* find.cpp in Sources */,
 				2760AABF0ED072E70017905F /* cmddata.cpp in Sources */,
 				2760AAC10ED072E70017905F /* filestr.cpp in Sources */,
@@ -367,8 +370,9 @@
 				2760AAC40ED072E70017905F /* scantree.cpp in Sources */,
 				2760AAC70ED072FA0017905F /* unpack.cpp in Sources */,
 				2760AACA0ED073230017905F /* consio.cpp in Sources */,
-				2760AACD0ED073340017905F /* smallfn.cpp in Sources */,
 				273E41DD0ED07B8F00C0B253 /* dll.cpp in Sources */,
+				2736F1CA0F3F6B3200FB1364 /* rar.cpp in Sources */,
+				2736F1CF0F3F6B9B00FB1364 /* list.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +435,13 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_LARGEFILE_SOURCE,
+					"_FILE_OFFSET_BITS=64",
+					UNRAR,
+					SILENT,
+					RARDLL,
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = unrar;

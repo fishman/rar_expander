@@ -7,6 +7,7 @@
 //
 
 #import "RarExpander.h"
+#import "AlertSheets.h"
 
 #import "dll.hpp"
 
@@ -33,7 +34,18 @@ int processData(unsigned char * block, int size) {
   return 1;
 }
 
+int needPassword(RarExpander *rarExpander, char *passwordBuffer, int bufferSize){
+  NSString *password;
+
+  [rarExpander showPasswordSheet];
+  password = [rarExpander password];
+  strcpy(passwordBuffer, [password cString]);
+  bufferSize = [password length];
+  return CONTINUE_PROCESSING;
+}
+
 int processRarCallbackMessage(UINT msg, LONG UserData, LONG P1, LONG P2) {
+  id rarExpander = (RarExpander*)UserData;
 	switch (msg) {
 		// case UCM_CHANGEVOLUME : return volumeSwitch(current_env, current_obj, (char *) P1, (int) P2);
 		// case UCM_PROCESSDATA :	return processData(current_env, current_obj, (unsigned char *) P1, (int) P2);
@@ -45,8 +57,7 @@ int processRarCallbackMessage(UINT msg, LONG UserData, LONG P1, LONG P2) {
       fprintf(stderr, "process data");
       return STOP_PROCESSING;
     case UCM_NEEDPASSWORD :
-      fprintf(stderr, "need password");
-      return STOP_PROCESSING;
+      return needPassword(rarExpander, (char *) P1, (int) P2);
 		default :
 		  fprintf(stderr, "Unknown message passed to RAR callback function.");
 		  return STOP_PROCESSING;
@@ -79,6 +90,7 @@ bool extractAllFiles(HANDLE archive, char * destinationPath) {
 }
 @implementation RarExpander
 
+
 - (void)donate:(id)sender
 {
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.paypal.com"]];
@@ -100,13 +112,51 @@ bool extractAllFiles(HANDLE archive, char * destinationPath) {
 
   archive = RAROpenArchive(&testArchive);
 
-	RARSetCallback(archive, processRarCallbackMessage, (LONG) NULL);
+	RARSetCallback(archive, processRarCallbackMessage, (LONG) self);
   // RARSetChangeVolProc(archive, volumeChange);
   // RARSetProcessDataProc(archive, processData);
 
   result = extractAllFiles(archive, "/Users/timebomb/Desktop/sample");
 
   RARCloseArchive(archive);
+}
+
+- (NSString*)password
+{
+  return [password stringValue];
+}
+
+- (void)sheetDidEnd:(NSWindow *)sheet
+         returnCode:(int)returnCode
+        contextInfo:(void *)contextInfo
+{
+  [NSApp stopModal];
+}
+
+- (void)showPasswordSheet
+{
+  [NSApp  beginSheet:passwordSheet
+      modalForWindow:progressWindow
+       modalDelegate:self
+      didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:)
+         contextInfo:nil];
+  [NSApp runModalForWindow:progressWindow];
+  [NSApp endSheet:passwordSheet];
+  [passwordSheet orderOut:nil];
+}
+
+- (void)endPassSheet:(id)sender
+{
+  // Return to normal event handling
+  [NSApp endSheet:passwordSheet];
+
+  // Hide the sheet
+  [passwordSheet orderOut:sender];
+}
+
+- (void)cancelPassSheet:(id)sender
+{
+  [self endPassSheet];
 }
 
 - (void)openPanelDidEnd:(NSOpenPanel *)openPanel
@@ -117,6 +167,7 @@ bool extractAllFiles(HANDLE archive, char * destinationPath) {
     NSString *path = [openPanel filename];
     DLog(@"%@", path);
 
+		[openPanel orderOut:self];
     [self extractArchive:path];
   }
 }
@@ -132,17 +183,6 @@ bool extractAllFiles(HANDLE archive, char * destinationPath) {
                   modalDelegate:self
                  didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:)
                     contextInfo:NULL];
-}
-
-
-- (void)cancelPassword:(id)sender
-{
-
-}
-
-- (void)acceptPassword:(id)sender
-{
-
 }
 
 - (void)about:(id)sender

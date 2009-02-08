@@ -8,22 +8,22 @@
 
 
 @interface RarExpander : NSObject {
-	IBOutlet NSSecureTextField *aSecureTextField;
-  IBOutlet NSWindow *passWindow;
+	IBOutlet NSSecureTextField *password;
   IBOutlet NSWindow *progressWindow;
-
+  IBOutlet NSWindow *passwordSheet;
 }
 
 - (IBAction)about:(id)sender;
-- (IBAction)acceptPassword:(id)sender;
-- (IBAction)cancelPassword:(id)sender;
+- (IBAction)endPassSheet:(id)sender;
+- (IBAction)cancelPassSheet:(id)sender;
 - (IBAction)donate:(id)sender;
-- (IBAction)open:(id)sender;
+- (IBAction)showOpenPanel:(id)sender;
 
+- (NSString*)password;
 
+- (void)extractArchive:(NSString*)fileName;
 - (void)openPanelDidEnd:(NSOpenPanel *)openPanel
              returnCode:(int)returnCode
             contextInfo:(void *)x;
-- (IBAction)showOpenPanel:(id)sender;
 
 @end

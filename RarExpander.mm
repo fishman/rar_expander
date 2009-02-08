@@ -18,18 +18,18 @@
 int volumeChange(char * nextArchiveName, int mode) {
   if(mode = RAR_VOL_ASK) {
     DLog(@"Volume not found %s\n", nextArchiveName);
-    return 0;
+    return STOP_PROCESSING;
   } else {
     DLog(@"Next volume is %s\n", nextArchiveName);
-    return 1;
+    return CONTINUE_PROCESSING;
   }
 }
 
 
 
 int processData(unsigned char * block, int size) {
-  DLog(@".");
-  return 1;
+  DLog(@"processData");
+  return CONTINUE_PROCESSING;
 }
 
 int needPassword(RarExpander *rarExpander, char *passwordBuffer, int bufferSize){
@@ -50,10 +50,9 @@ int processRarCallbackMessage(UINT msg, LONG UserData, LONG P1, LONG P2) {
 		// case UCM_NEEDPASSWORD :	return needPassword(current_env, current_obj, (char *) P1, (int) P2);
     case UCM_CHANGEVOLUME :
       DLog(@"Change volume");
-      return STOP_PROCESSING;
+      return volumeChange((char *)P1, (int)P2);
     case UCM_PROCESSDATA :
-      DLog(@"process data");
-      return STOP_PROCESSING;
+      return processData((unsigned char*) P1, (int)P2);
     case UCM_NEEDPASSWORD :
       return needPassword(rarExpander, (char *) P1, (int) P2);
 		default :

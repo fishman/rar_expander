@@ -7,11 +7,9 @@
 //
 
 #import "RarExpander.h"
-#import "AlertSheets.h"
+#import "Debug.h"
 
 #import "dll.hpp"
-
-#import "Debug.h"
 
 #define STOP_PROCESSING -1
 #define CONTINUE_PROCESSING 1

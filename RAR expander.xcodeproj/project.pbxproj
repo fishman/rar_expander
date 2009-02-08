@@ -64,6 +64,7 @@
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		2736F0E20F3E507400FB1364 /* AlertSheets.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AlertSheets.mm; sourceTree = "<group>"; };
 		273E41D40ED0798900C0B253 /* RarExpander.scriptSuite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = RarExpander.scriptSuite; path = Resources/RarExpander.scriptSuite; sourceTree = "<group>"; };
 		273E41DC0ED07B8F00C0B253 /* dll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dll.cpp; sourceTree = "<group>"; };
 		2760A9A90ED05DCC0017905F /* expander_icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = expander_icon.icns; path = Resources/expander_icon.icns; sourceTree = "<group>"; };
@@ -137,6 +138,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2736F0E20F3E507400FB1364 /* AlertSheets.mm */,
 				2760A9B30ED062310017905F /* RarExpander.h */,
 				2760A9B40ED062310017905F /* RarExpander.mm */,
 				2760A9B60ED062400017905F /* PreferencesController.h */,
@@ -433,9 +435,12 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = unrar;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "-DRARDLL";
+				OTHER_CFLAGS = (
+					"-DRARDLL",
+					"-D__DEBUG__",
+				);
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx10.4;
 			};
 			name = Debug;
 		};
@@ -449,7 +454,7 @@
 				HEADER_SEARCH_PATHS = unrar;
 				OTHER_CFLAGS = "-DRARDLL";
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx10.4;
 			};
 			name = Release;
 		};

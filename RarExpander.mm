@@ -17,10 +17,10 @@
 
 int volumeChange(char * nextArchiveName, int mode) {
   if(mode = RAR_VOL_ASK) {
-    fprintf(stderr, "Volume not found %s\n", nextArchiveName);
+    DLog(@"Volume not found %s\n", nextArchiveName);
     return 0;
   } else {
-    fprintf(stderr, "Next volume is %s\n", nextArchiveName);
+    DLog(@"Next volume is %s\n", nextArchiveName);
     return 1;
   }
 }
@@ -28,7 +28,7 @@ int volumeChange(char * nextArchiveName, int mode) {
 
 
 int processData(unsigned char * block, int size) {
-  fprintf(stderr, ".");
+  DLog(@".");
   return 1;
 }
 
@@ -49,15 +49,15 @@ int processRarCallbackMessage(UINT msg, LONG UserData, LONG P1, LONG P2) {
 		// case UCM_PROCESSDATA :	return processData(current_env, current_obj, (unsigned char *) P1, (int) P2);
 		// case UCM_NEEDPASSWORD :	return needPassword(current_env, current_obj, (char *) P1, (int) P2);
     case UCM_CHANGEVOLUME :
-      fprintf(stderr, "Change volume");
+      DLog(@"Change volume");
       return STOP_PROCESSING;
     case UCM_PROCESSDATA :
-      fprintf(stderr, "process data");
+      DLog(@"process data");
       return STOP_PROCESSING;
     case UCM_NEEDPASSWORD :
       return needPassword(rarExpander, (char *) P1, (int) P2);
 		default :
-		  fprintf(stderr, "Unknown message passed to RAR callback function.");
+		  DLog(@"Unknown message passed to RAR callback function.");
 		  return STOP_PROCESSING;
 	}
 }
@@ -69,18 +69,18 @@ bool extractAllFiles(HANDLE archive, char * destinationPath) {
 	fileHeader.CmtBuf = NULL;
 
 	while((result = RARReadHeader(archive, &fileHeader)) == SUCCESS) {
-		fprintf(stderr, "Extracing file %s\n", fileHeader.FileName);
+		DLog(@"Extracting file %s", fileHeader.FileName);
 
 		result = RARProcessFile(archive, RAR_EXTRACT, destinationPath, NULL);
 
 		if (result != SUCCESS) {
-			fprintf(stderr, "Error processing file\n");
+			DLog(@"Error processing file");
 			return false;
 		}
 	}
 
 	if (result != ERAR_END_ARCHIVE) {
-		fprintf(stderr, "Error in archive\n");
+		DLog(@"Error in archive");
 		return false;
 	}
 
@@ -106,13 +106,9 @@ bool extractAllFiles(HANDLE archive, char * destinationPath) {
   testArchive.CmtBuf      = NULL;
   testArchive.CmtBufSize  = 0;
 
-  header.CmtBuf = NULL;
-
   archive = RAROpenArchive(&testArchive);
 
 	RARSetCallback(archive, processRarCallbackMessage, (LONG) self);
-  // RARSetChangeVolProc(archive, volumeChange);
-  // RARSetProcessDataProc(archive, processData);
 
   result = extractAllFiles(archive, "/Users/timebomb/Desktop/sample");
 

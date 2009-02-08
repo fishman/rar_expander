@@ -86,6 +86,7 @@ bool extractAllFiles(HANDLE archive, char * destinationPath) {
 
 	return true;
 }
+
 @implementation RarExpander
 
 
@@ -110,7 +111,8 @@ bool extractAllFiles(HANDLE archive, char * destinationPath) {
 
 	RARSetCallback(archive, processRarCallbackMessage, (LONG) self);
 
-  result = extractAllFiles(archive, "/Users/timebomb/Desktop/sample");
+  // extract to same directory as rar archive
+  result = extractAllFiles(archive, [fileName stringByDeletingLastPathComponent]);
 
   RARCloseArchive(archive);
 }

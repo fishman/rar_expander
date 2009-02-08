@@ -62,7 +62,7 @@ int processRarCallbackMessage(UINT msg, LONG UserData, LONG P1, LONG P2) {
 	}
 }
 
-bool extractAllFiles(HANDLE archive, char * destinationPath) {
+bool extractAllFiles(HANDLE archive, const char * destinationPath) {
 	struct RARHeaderData fileHeader;
 	int result;
 
@@ -71,7 +71,7 @@ bool extractAllFiles(HANDLE archive, char * destinationPath) {
 	while((result = RARReadHeader(archive, &fileHeader)) == SUCCESS) {
 		DLog(@"Extracting file %s", fileHeader.FileName);
 
-		result = RARProcessFile(archive, RAR_EXTRACT, destinationPath, NULL);
+		result = RARProcessFile(archive, RAR_EXTRACT, (char *)destinationPath, NULL);
 
 		if (result != SUCCESS) {
 			DLog(@"Error processing file");
@@ -112,7 +112,7 @@ bool extractAllFiles(HANDLE archive, char * destinationPath) {
 	RARSetCallback(archive, processRarCallbackMessage, (LONG) self);
 
   // extract to same directory as rar archive
-  result = extractAllFiles(archive, [fileName stringByDeletingLastPathComponent]);
+  result = extractAllFiles(archive, [[fileName stringByDeletingLastPathComponent] cString]);
 
   RARCloseArchive(archive);
 }
